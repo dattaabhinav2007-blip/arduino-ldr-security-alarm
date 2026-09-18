@@ -1,0 +1,29 @@
+//SECURITY_ALERT_THROUGH_LDR 
+int lightPen=A0;
+int lightVal;
+int buzzPin=9;
+
+void setup() {
+  // put your setup code here, to run once:
+pinMode(lightPen,INPUT);
+pinMode(buzzPin,OUTPUT);
+Serial.begin(9600);
+}
+
+void loop() {
+  // put your main code here, to run repeatedly:
+lightVal=analogRead(lightPen);
+Serial.println(lightVal);
+delay(250);
+if(lightVal>281){
+  digitalWrite(buzzPin,HIGH);
+
+  Serial.print("Intruder Indulged");
+  Serial.print("     ");
+  Serial.println("  CODE RED   ");
+  delay(500);
+}
+else {
+  noTone(buzzPin);
+}
+}
